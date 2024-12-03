@@ -1,6 +1,7 @@
 # cse301tf
 
 ## 2021 - 5 number
+```
 ### Problem Statement:
 
 A professor frequently gives exams to her students. She can give three possible types of exams, and the class is graded as either having done well or badly. Let \( P_i \) denote the probability that the class does well on a type \( i \) exam, where:
@@ -139,5 +140,6 @@ Thus, the **proportion of exams of type \( i \)** (in the long run) is:
 These proportions represent the long-run distribution of exam types after many exams have been given.
 
 ---
+```
 
 Let me know if you'd like further clarification or if you'd like to move on to part (b) of the problem!
