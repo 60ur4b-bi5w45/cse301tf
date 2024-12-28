@@ -42,46 +42,25 @@ GCD is \( 1 \).
 ---
 
 ### Backtracking to Find \( x \) and \( y \)
+From 4 = 3 × 1 + 1, rewrite 1:  
+1 = 4 - 3 × 1
 
-1. From \( 4 = 3 \cdot 1 + 1 \), rewrite \( 1 \):
-   \[
-   1 = 4 - 3 \cdot 1
-   \]
+Substitute 3 = 11 - 4 × 2 into 1:  
+1 = 4 - (11 - 4 × 2) × 1  
+1 = 4 - 11 + 4 × 2  
+1 = 3 × 4 - 11
 
-2. Substitute \( 3 = 11 - 4 \cdot 2 \) into \( 1 \):
-   \[
-   1 = 4 - (11 - 4 \cdot 2) \cdot 1
-   \]
-   \[
-   1 = 4 - 11 + 4 \cdot 2
-   \]
-   \[
-   1 = 3 \cdot 4 - 11
-   \]
+Substitute 4 = 15 - 11 × 1 into 1:  
+1 = 3 × (15 - 11) - 11  
+1 = 3 × 15 - 3 × 11 - 11  
+1 = 3 × 15 - 4 × 11
 
-3. Substitute \( 4 = 15 - 11 \cdot 1 \) into \( 1 \):
-   \[
-   1 = 3 \cdot (15 - 11) - 11
-   \]
-   \[
-   1 = 3 \cdot 15 - 3 \cdot 11 - 11
-   \]
-   \[
-   1 = 3 \cdot 15 - 4 \cdot 11
-   \]
+Substitute 11 = 56 - 15 × 3 into 1:  
+1 = 3 × 15 - 4 × (56 - 15 × 3)  
+1 = 3 × 15 - 4 × 56 + 12 × 15  
+1 = 15 × 15 - 4 × 56
 
-4. Substitute \( 11 = 56 - 15 \cdot 3 \) into \( 1 \):
-   \[
-   1 = 3 \cdot 15 - 4 \cdot (56 - 15 \cdot 3)
-   \]
-   \[
-   1 = 3 \cdot 15 - 4 \cdot 56 + 12 \cdot 15
-   \]
-   \[
-   1 = 15 \cdot 15 - 4 \cdot 56
-   \]
-
-Thus, \( x = -4 \), \( y = 15 \) satisfy \( 56x + 15y = 1 \).
+Thus, x = -4, y = 15 satisfy 56x + 15y = 1.
 
 ---
 
