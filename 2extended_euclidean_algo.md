@@ -1,75 +1,79 @@
-# Extended Euclidean Algorithm
+The **Extended Euclidean Algorithm** is an extension of the Euclidean Algorithm that not only computes the greatest common divisor (GCD) of two numbers \(a\) and \(b\), but also finds two integers \(x\) and \(y\) (called Bezout coefficients) such that:
 
-The **Extended Euclidean Algorithm** builds upon the Euclidean Algorithm and not only computes the GCD of two integers `a` and `b`, but also finds integers `x` and `y` such that:
-
-`ax + by = GCD(a, b)`
-
-These integers `x` and `y` are called **Bezout coefficients**. This property is particularly useful in solving linear Diophantine equations and modular inverses in cryptography.
+\[
+a \cdot x + b \cdot y = \text{GCD}(a, b)
+\]
 
 ---
 
-## Core Idea
-
-Using the steps of the Euclidean Algorithm, we express the GCD as a linear combination of `a` and `b` by backtracking through the remainders.
-
-For example, if:
-
-1. \( r = a - q \cdot b \)
-2. Then, \( \text{GCD}(a, b) = \text{GCD}(b, r) \), and
-3. \( r \) can be expressed in terms of \( a \) and \( b \).
+### How It Works
+1. **Start with the Euclidean Algorithm:** Use division to reduce the problem recursively until the GCD is found.
+2. **Backtrack:** Express the GCD as a linear combination of \(a\) and \(b\) by substituting remainders from each step back into earlier equations.
 
 ---
 
-## Steps of the Extended Algorithm
+### Steps with Example
+Let’s find \(x\) and \(y\) for \(a = 56\) and \(b = 15\):
 
-1. Use the Euclidean Algorithm to compute the GCD of \( a \) and \( b \).
-2. Backtrack to express the GCD as a linear combination of \( a \) and \( b \).
-3. Stop when the GCD is written as \( ax + by \).
+1. **Euclidean Algorithm**  
+   Divide \(a\) by \(b\) repeatedly until the remainder is zero:
+   - \(56 = 15 \times 3 + 11\)
+   - \(15 = 11 \times 1 + 4\)
+   - \(11 = 4 \times 2 + 3\)
+   - \(4 = 3 \times 1 + 1\)
+   - \(3 = 1 \times 3 + 0\)
+
+   The GCD is \(1\).
+
+2. **Backtracking to Find Coefficients**  
+   Start from the last non-zero remainder equation and backtrack:
+   - From \(4 = 3 \times 1 + 1\), rewrite as:  
+     \[
+     1 = 4 - 3 \times 1
+     \]
+   - Substitute \(3 = 11 - 4 \times 2\) into the equation:  
+     \[
+     1 = 4 - (11 - 4 \times 2)
+     \]
+     \[
+     1 = 4 - 11 + 4 \times 2
+     \]
+     \[
+     1 = 3 \times 4 - 11
+     \]
+   - Substitute \(4 = 15 - 11 \times 1\):  
+     \[
+     1 = 3 \times (15 - 11) - 11
+     \]
+     \[
+     1 = 3 \times 15 - 3 \times 11 - 11
+     \]
+     \[
+     1 = 3 \times 15 - 4 \times 11
+     \]
+   - Substitute \(11 = 56 - 15 \times 3\):  
+     \[
+     1 = 3 \times 15 - 4 \times (56 - 15 \times 3)
+     \]
+     \[
+     1 = 3 \times 15 - 4 \times 56 + 12 \times 15
+     \]
+     \[
+     1 = 15 \times 15 - 4 \times 56
+     \]
+
+   Thus, \(x = -4\) and \(y = 15\) satisfy \(56x + 15y = 1\).
 
 ---
 
-## Example: Finding \( x \) and \( y \) for \( a = 56 \), \( b = 15 \)
+### Python Implementation
 
-### Euclidean Algorithm
-1. \( 56 = 15 \cdot 3 + 11 \)
-2. \( 15 = 11 \cdot 1 + 4 \)
-3. \( 11 = 4 \cdot 2 + 3 \)
-4. \( 4 = 3 \cdot 1 + 1 \)
-5. \( 3 = 1 \cdot 3 + 0 \)
-
-GCD is \( 1 \).
-
----
-
-### Backtracking to Find \( x \) and \( y \)
-From 4 = 3 × 1 + 1, rewrite 1:  
-1 = 4 - 3 × 1
-
-Substitute 3 = 11 - 4 × 2 into 1:  
-1 = 4 - (11 - 4 × 2) × 1  
-1 = 4 - 11 + 4 × 2  
-1 = 3 × 4 - 11
-
-Substitute 4 = 15 - 11 × 1 into 1:  
-1 = 3 × (15 - 11) - 11  
-1 = 3 × 15 - 3 × 11 - 11  
-1 = 3 × 15 - 4 × 11
-
-Substitute 11 = 56 - 15 × 3 into 1:  
-1 = 3 × 15 - 4 × (56 - 15 × 3)  
-1 = 3 × 15 - 4 × 56 + 12 × 15  
-1 = 15 × 15 - 4 × 56
-
-Thus, x = -4, y = 15 satisfy 56x + 15y = 1.
-
----
-
-## Python Implementation
+Here’s how to compute it programmatically:
 
 ```python
 def extended_gcd(a, b):
     if b == 0:
-        return a, 1, 0  # Base case: GCD is `a`, coefficients are `1` and `0`.
+        return a, 1, 0  # Base case: gcd is `a`, coefficients are 1 and 0
     gcd, x1, y1 = extended_gcd(b, a % b)
     # Update x and y using recursion
     x = y1
@@ -89,17 +93,14 @@ GCD: 1, x: -4, y: 15
 
 ---
 
-## Applications
+### Applications
+1. **Solving Linear Diophantine Equations:**  
+   If \(ax + by = c\) has integer solutions, scale the coefficients from \(ax + by = \text{GCD}(a, b)\) appropriately.
 
-1. **Solving Linear Diophantine Equations**:
-   Solve equations of the form \( ax + by = c \) by scaling \( x \) and \( y \) from \( ax + by = \text{GCD}(a, b) \).
+2. **Modular Inverse:**  
+   If \(a\) and \(m\) are coprime, the modular inverse of \(a \mod m\) is the \(x\) such that \(ax \mod m = 1\). This \(x\) is found using the Extended Euclidean Algorithm.
 
-2. **Modular Inverse**:
-   The modular inverse of \( a \mod m \) exists if and only if \( \text{GCD}(a, m) = 1 \). Using the Extended Euclidean Algorithm, the modular inverse is \( x \) from \( ax + my = 1 \).
+3. **Cryptography:**  
+   Used in algorithms like RSA for computing modular inverses and key generation.
 
-3. **Cryptography**:
-   Used in algorithms like RSA for modular arithmetic and key generation.
-
----
-
-The Extended Euclidean Algorithm is a powerful tool in number theory and cryptography. Let me know if you'd like to explore specific applications in more detail!
+Let me know if you'd like to dive deeper into any specific application!
