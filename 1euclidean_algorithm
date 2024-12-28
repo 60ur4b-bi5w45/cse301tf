@@ -1,0 +1,63 @@
+The **Euclidean Algorithm** is a method for finding the greatest common divisor (GCD) of two integers. It’s efficient and forms the basis for many other algorithms in number theory and cryptography.
+
+---
+
+### **The Core Idea**
+The algorithm is based on the principle that:
+> The GCD of two numbers doesn't change if the larger number is replaced by its remainder when divided by the smaller number.
+
+This process is repeated until the remainder becomes zero. At that point, the divisor is the GCD of the two numbers.
+
+---
+
+### **Steps of the Euclidean Algorithm**
+1. Start with two integers \( a \) and \( b \) (\( a > b \)).
+2. Compute the remainder \( r = a \mod b \).
+3. Replace \( a \) with \( b \), and \( b \) with \( r \).
+4. Repeat steps 2–3 until \( b = 0 \).
+5. When \( b = 0 \), \( a \) is the GCD.
+
+---
+
+### **Example**
+Find the GCD of \( 56 \) and \( 15 \).
+
+1. \( a = 56 \), \( b = 15 \).
+2. Compute \( 56 \mod 15 = 11 \). Replace \( a = 15 \), \( b = 11 \).
+3. Compute \( 15 \mod 11 = 4 \). Replace \( a = 11 \), \( b = 4 \).
+4. Compute \( 11 \mod 4 = 3 \). Replace \( a = 4 \), \( b = 3 \).
+5. Compute \( 4 \mod 3 = 1 \). Replace \( a = 3 \), \( b = 1 \).
+6. Compute \( 3 \mod 1 = 0 \). Replace \( a = 1 \), \( b = 0 \).
+
+Result: The GCD is \( 1 \).
+
+---
+
+### **Python Implementation**
+
+```python
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+# Example
+print(gcd(56, 15))  # Output: 1
+```
+
+---
+
+### **Why It Works**
+The algorithm relies on the fact that any common divisor of \( a \) and \( b \) must also divide \( a \mod b \). Therefore, reducing \( a \) and \( b \) in this way preserves the GCD.
+
+---
+
+### **Applications**
+1. **Simplifying Fractions**: Reducing fractions to their simplest form.
+2. **Cryptography**: Used in algorithms like RSA for modular arithmetic.
+3. **Diophantine Equations**: Solving equations of the form \( ax + by = c \).
+4. **LCM Calculation**: \( \text{LCM}(a, b) = \frac{|a \cdot b|}{\text{GCD}(a, b)} \).
+
+---
+
+Let me know if you'd like to explore the **Extended Euclidean Algorithm**, which also finds coefficients \( x \) and \( y \) such that \( ax + by = \text{GCD}(a, b) \).
