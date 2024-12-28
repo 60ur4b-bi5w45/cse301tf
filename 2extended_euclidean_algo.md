@@ -1,11 +1,11 @@
 # Extended Euclidean Algorithm
 
 The **Extended Euclidean Algorithm** builds upon the Euclidean Algorithm and not only computes the GCD of two integers `a` and `b`, but also finds integers `x` and `y` such that:
-
+```
 \[
 ax + by = \text{GCD}(a, b)
 \]
-
+```
 These integers `x` and `y` are called **Bezout coefficients**. This property is particularly useful in solving linear Diophantine equations and modular inverses in cryptography.
 
 ---
