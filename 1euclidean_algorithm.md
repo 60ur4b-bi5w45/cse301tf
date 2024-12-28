@@ -1,4 +1,3 @@
-```markdown
 # Euclidean Algorithm
 
 The **Euclidean Algorithm** is a method for finding the greatest common divisor (GCD) of two integers. It is efficient and widely used in number theory and cryptography.
